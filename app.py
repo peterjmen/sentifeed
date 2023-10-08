@@ -14,6 +14,14 @@ model_filename = os.path.join(base_directory, "sentiment_model.pkl")
 model = joblib.load(model_filename)
 print(f"Trained model loaded from '{model_filename}'")
 
+COUNTRY_MAP = {
+    "USA": "us",
+    "UK": "gb",
+    "China": "cn",
+    "New Zealand": "nz",
+    "All Countries": None
+}
+
 
 def calculate_sentiment(text):
     probs = model.predict_proba([text])
@@ -81,29 +89,48 @@ def fetch_articles(country=None, category=None, sentiment=None):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    selected_country = None
-    selected_category = None
-    selected_sentiment = None
-    articles = []
+    selected_country = request.form.get("country", "All Countries").strip()
+    selected_category = request.form.get("category", "All News").strip()
+    selected_sentiment = request.form.get("sentiment", "All Sentiment").strip()
+    
+    country_code = COUNTRY_MAP[selected_country]
+    
+    # Map category
+    category_map = {
+        "World": "general",
+        "Finance": "business",
+        "Sports": "sports",
+        "Technology": "technology",
+        "All News": None
+    }
+    category_code = category_map[selected_category]
 
-    if request.method == "POST":
-        selected_country = request.form.get("country", "").strip()
-        if selected_country == "":
-            selected_country = None  # Set to None if All/World selected
-        selected_category = request.form.get("category", "").strip() or None
-        selected_sentiment = request.form.get("sentiment-filter", "").strip() or None
-        articles = fetch_articles(
-            country=selected_country,
-            category=selected_category,
-            sentiment=selected_sentiment,
-        )
+    # Fetch the articles
+    response = newsapi.get_top_headlines(
+        country=country_code,
+        category=category_code,
+        language='en',
+        page_size=100
+    )
+    
+    articles = response.get("articles", [])
+
+    # Format the published date and analyze sentiment for each article
+    for article in articles:
+        article["headline"] = article["title"]
+        article["date"] = datetime.strptime(
+            article["publishedAt"], "%Y-%m-%dT%H:%M:%SZ"
+        ).strftime("%b %d, %Y %H:%M:%S")
+        sentiment_value = calculate_sentiment(article["description"] or article["title"])
+        article["sentiment"] = sentiment_to_category(sentiment_value)
+
+    # If sentiment is selected, filter articles
+    if selected_sentiment != "All Sentiment":
+        articles = [article for article in articles if article["sentiment"] == selected_sentiment]
 
     return render_template(
         "index.html",
-        articles=articles,
-        selected_country=selected_country,
-        selected_category=selected_category,
-        selected_sentiment=selected_sentiment,
+        news=articles
     )
 
 

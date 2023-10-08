@@ -3,131 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentifeed</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f3f3f3;
-        }
-        .article-list {
-            height: 500px;
-            overflow-y: scroll;
-        }
-        .article-preview {
-            border: 1px solid #ccc;
-            padding: 15px;
-            cursor: pointer;
-            background-color: white;
-        }
-        .article-preview:hover {
-            background-color: #f0f0f0;
-        }
-        .article-active {
-            background-color: #f0f0f0;
-        }
-    </style>
+    <title>SentiFeed</title>
+    <link rel="stylesheet" href="static/styles.css">
+
 </head>
 <body>
-    <div class="container-fluid py-4" style="background-color: #4CAF50;">
-        <div class="container text-white">
-            <h1>Sentifeed</h1>
-            <p>Search news by country, category, and sentiment</p>
-        </div>
-    </div>
-    <div class="container my-2">
-        <form method="POST" class="mb-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="country">Country:</label>
-                    <select class="form-control" id="country" name="country">
-                        <option value="" {% if not selected_country %}selected{% endif %}>All/World</option>
-                        <option value="us" {% if selected_country == "us" %}selected{% endif %}>United States</option>
-                        <option value="gb" {% if selected_country == "gb" %}selected{% endif %}>United Kingdom</option>
-                        <!-- Add more countries as needed -->
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="category">Category:</label>
-                    <select class="form-control" id="category" name="category">
-                        <option value="" {% if not selected_category %}selected{% endif %}>All</option>
-                        <option value="business" {% if selected_category == "business" %}selected{% endif %}>Business</option>
-                        <option value="entertainment" {% if selected_category == "entertainment" %}selected{% endif %}>Entertainment</option>
-                        <option value="health" {% if selected_category == "health" %}selected{% endif %}>Health</option>
-                        <option value="science" {% if selected_category == "science" %}selected{% endif %}>Science</option>
-                        <option value="sports" {% if selected_category == "sports" %}selected{% endif %}>Sports</option>
-                        <option value="technology" {% if selected_category == "technology" %}selected{% endif %}>Technology</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="sentiment-filter">Sentiment:</label>
-                    <select class="form-control" id="sentiment-filter" name="sentiment-filter">
-                        <option value="" {% if not selected_sentiment %}selected{% endif %}>All</option>
-                        <option value="Very Negative" {% if selected_sentiment == "Very Negative" %}selected{% endif %}>Very Negative</option>
-                        <option value="Negative" {% if selected_sentiment == "Negative" %}selected{% endif %}>Negative</option>
-                        <option value="Neutral" {% if selected_sentiment == "Neutral" %}selected{% endif %}>Neutral</option>
-                        <option value="Positive" {% if selected_sentiment == "Positive" %}selected{% endif %}>Positive</option>
-                        <option value="Very Positive" {% if selected_sentiment == "Very Positive" %}selected{% endif %}>Very Positive</option>
-                    </select>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <button type="submit" class="btn btn-success">Search</button>
-                </div>
+    <div class="container">
+        <!--MOBILE MENU-->
+        <div class="mobile-header" id="mobile-header">  
+            <!--animated menu button-->          
+            <div class="hamburger-div">
+                <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active'); openNav()" >
+                    <path
+                          class="line top"
+                          d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                    <path
+                          class="line middle"
+                          d="m 30,50 h 40" />
+                    <path
+                          class="line bottom"
+                          d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+                  </svg>
             </div>
-        </form>
-        <div class="row">
-            <div class="col-md-4 article-list">
-                {% for article in articles %}
-                    <div class="article-preview"
-                         data-content="{{ article.content }}"
-                         data-url="{{ article.url }}"
-                         data-publishedat="{{ article.publishedAt }}"
-                         data-sentimentweighting="{{ article.sentiment_weighting }}"
-                         data-sentimentcategory="{{ article.sentiment_category }}">
-                        <h5>{{ article.title }}</h5>
-                        <p><strong>Published At:</strong> {{ article.publishedAt }}</p>
-                        <p><strong>Sentiment Category:</strong> {{ article.sentiment_category }}</p>
+            <img src="static/logo.jpg" alt="" class="logo">
+        </div>
+        <!--FILTER SECTION-->
+        <div class="filter" id="filter">
+            <img src="static/logo.jpg" alt="" class="logo" >
+            <!-- sentiment filter -->
+            <form method="post">
+                <h2>Sentiment:</h2>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Very Positive"/>
+                    Very Positive
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Positive"/>
+                    Positive
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Neutral"/>
+                    Neutral
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Negative"/>
+                    Negative
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Very Negative"/>
+                    Very Negative
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="All Sentiment"/>
+                    All Sentiment
+                </label>
+            <!-- category filter --> 
+            <h2>Category:</h2>
+            <label for="category">
+                <input type="radio" name="category" value="World"/>
+                World
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Finance"/>
+                Finance
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Sports"/>
+                Sports
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Technology"/>
+                Technology
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="All News"/>
+                All News
+            </label>
+            <!-- country filter -->
+            <h2>Country:</h2>
+            <label for="country">
+                <input type="radio" name="country" value="USA"/>
+                USA
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="UK"/>
+                UK
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="China"/>
+                China
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="New Zealand"/>
+                New Zealand
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="All Countries"/>
+                All Countries
+            </label>
+            <button type="submit" class="button">Filter Results</button>
+        </form>   
+        </div>
+
+
+    <div class="articles">
+        {% if news %}
+            {% for article in news %}
+                {% if article.sentiment == "Very Positive" %}
+                    <div class="article very-positive" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
-            <div class="col-md-8">
-                <div class="article-details">
-                    <h3>Article Details</h3>
-                    <h5 id="article-title"></h5>
-                    <p><strong>Published At:</strong> <span id="article-publishedAt"></span></p>
-                    <p><strong>Sentiment Weighting:</strong> <span id="article-sentiment-weighting"></span></p>
-                    <div id="article-content"></div>
-                    <a href="" target="_blank" id="article-read-more">Read more</a>
+                {% elif article.sentiment == "Positive" %}
+                <div class="article positive" >
+                    <div class="headline">{{article.headline}}</div>
+                    <div class="details">
+                        <p>{{article.date}}</p>
+                        <p>{{article.author}}</p>
+                        <p>{{article.source}}</p>
+                    </div>
+                    <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <div class="imagediv">
+                        <img src="static/image.jpg" alt="" class="image">
+                    </div>
                 </div>
-            </div>
-        </div>
+                {% elif article.sentiment == "Neutral" %}
+                    <div class="article neutral" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% elif article.sentiment == "Negative" %}
+                    <div class="article negative" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% elif article.sentiment == "Very Negative" %}
+                    <div class="article very-negative" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}    
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $('.article-preview').click(function() {
-            $('.article-preview').removeClass('article-active');
-            $(this).addClass('article-active');
-            var articleTitle = $(this).find('h5').text();
-            var articleContent = $(this).data('content');
-            var articlePublishedAt = $(this).data('publishedat');
-            var articleReadMore = $(this).data('url');
-            var sentimentWeighting = $(this).data('sentimentweighting');
-            $('#article-title').text(articleTitle);
-            $('#article-content').html(articleContent);
-            $('#article-publishedAt').text(articlePublishedAt);
-            $('#article-sentiment-weighting').text(sentimentWeighting.toFixed(1));
-            $('#article-read-more').attr('href', articleReadMore);
-        });
-
-        document.querySelector("form").addEventListener("submit", function (e) {
-            var selectedCountry = document.querySelector("#country").value;
-            var selectedCategory = document.querySelector("#category").value;
-
-            if (selectedCountry === "" && selectedCategory === "") {
-                alert("You must select either a country or category. Both options cannot be 'All'.");
-                e.preventDefault(); // Prevent form submission
-            }
-        });
-    </script>
+    <script src="static/app.js"></script>
 </body>
 </html>
