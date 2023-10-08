@@ -8,7 +8,9 @@
 
 </head>
 <body>
+
     <div class="container">
+        
         <!--MOBILE MENU-->
         <div class="mobile-header" id="mobile-header">  
             <!--animated menu button-->          
@@ -107,9 +109,32 @@
 
 
     <div class="articles">
+
+        <!-- modal -->
+        <div id="myModal" class="modal">
+
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalHeadline"></h2>
+            <p class="content" id = modalContent></p>
+            <a href="#" id="link"><strong>Read More</strong></a>
+            <p>Sentiment Evaluation</p>
+            <select>
+                <option>Very Positive</option>
+                <option>Positive</option>
+                <option>Neutral</option>
+                <option>Negative</option>
+                <option>Very Negative</option>
+            </select>
+            <button class="button">Submit Evaluation</button>
+            </div>
+        
+        </div>
+        
         {% if news %}
             {% for article in news %}
                 {% if article.sentiment == "Very Positive" %}
+             
                     <div class="article very-positive" >
                         <div class="headline">{{article.headline}}</div>
                         <div class="details">
@@ -117,11 +142,17 @@
                             <p>{{article.author}}</p>
                             <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
-                            <div class="imagediv">
+                        <button id="myBtn" class="read-more-button"
+                        data-headline="{{article.headline}}"
+                        data-content="{{article.content}}"
+                        data-url="{{article.url}}"
+                        onclick="setContent(this.getAttribute('data-headline'), this.getAttribute('data-content'),this.getAttribute('data-url')); showModal()">
+                        <p style="grid-area: readmore; font-size: 10pt;" >Read more</p></button>
+                        <div class="imagediv">
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
+              
                 {% elif article.sentiment == "Positive" %}
                 <div class="article positive" >
                     <div class="headline">{{article.headline}}</div>
@@ -130,7 +161,12 @@
                         <p>{{article.author}}</p>
                         <p>{{article.source.name}}</p>
                     </div>
-                    <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
+                    <button id="myBtn" class="read-more-button"
+                        data-headline="{{article.headline}}"
+                        data-content="{{article.content}}"
+                        data-url="{{article.url}}"
+                        onclick="setContent(this.getAttribute('data-headline'), this.getAttribute('data-content'),this.getAttribute('data-url')); showModal()">
+                        <p style="grid-area: readmore; font-size: 10pt;" >Read more</p></button>
                     <div class="imagediv">
                         <img src="{{article.urlToImage}}" alt="" class="image">
                     </div>
@@ -143,7 +179,12 @@
                             <p>{{article.author}}</p>
                             <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
+                        <button id="myBtn" class="read-more-button"
+                        data-headline="{{article.headline}}"
+                        data-content="{{article.content}}"
+                        data-url="{{article.url}}"
+                        onclick="setContent(this.getAttribute('data-headline'), this.getAttribute('data-content'),this.getAttribute('data-url')); showModal()">
+                        <p style="grid-area: readmore; font-size: 10pt;" >Read more</p></button>
                             <div class="imagediv">
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
@@ -156,7 +197,12 @@
                             <p>{{article.author}}</p>
                             <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
+                        <button id="myBtn" class="read-more-button"
+                        data-headline="{{article.headline}}"
+                        data-content="{{article.content}}"
+                        data-url="{{article.url}}"
+                        onclick="setContent(this.getAttribute('data-headline'), this.getAttribute('data-content'),this.getAttribute('data-url')); showModal()">
+                        <p style="grid-area: readmore; font-size: 10pt;" >Read more</p></button>
                             <div class="imagediv">
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
@@ -169,7 +215,12 @@
                             <p>{{article.author}}</p>
                             <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
+                        <button id="myBtn" class="read-more-button"
+                        data-headline="{{article.headline}}"
+                        data-content="{{article.content}}"
+                        data-url="{{article.url}}"
+                        onclick="setContent(this.getAttribute('data-headline'), this.getAttribute('data-content'),this.getAttribute('data-url')); showModal()">
+                        <p style="grid-area: readmore; font-size: 10pt;" >Read more</p></button>
                             <div class="imagediv">
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>

@@ -92,7 +92,6 @@ def index():
     selected_country = request.form.get("country", "All Countries").strip()
     selected_category = request.form.get("category", "All News").strip()
     selected_sentiment = request.form.get("sentiment", "All Sentiment").strip()
-    
     country_code = COUNTRY_MAP[selected_country]
     
     # Map category
@@ -128,9 +127,10 @@ def index():
     if selected_sentiment != "All Sentiment":
         articles = [article for article in articles if article["sentiment"] == selected_sentiment]
 
+
     return render_template(
         "index.html",
-        news=articles
+        news=articles,
     )
 
 
