@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiFeed</title>
+    <link rel="stylesheet" href="static/styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <!--MOBILE MENU-->
+        <div class="mobile-header" id="mobile-header">  
+            <!--animated menu button-->          
+            <div class="hamburger-div">
+                <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active'); openNav()" >
+                    <path
+                          class="line top"
+                          d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                    <path
+                          class="line middle"
+                          d="m 30,50 h 40" />
+                    <path
+                          class="line bottom"
+                          d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+                  </svg>
+            </div>
+            <img src="static/logo.jpg" alt="" class="logo">
+        </div>
+        <!--FILTER SECTION-->
+        <div class="filter" id="filter">
+            <img src="static/logo.jpg" alt="" class="logo" >
+            <!-- sentiment filter -->
+            <form method="post">
+                <h2>Sentiment:</h2>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Very Positive"/>
+                    Very Positive
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Positive"/>
+                    Positive
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Neutral"/>
+                    Neutral
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Negative"/>
+                    Negative
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="Very Negative"/>
+                    Very Negative
+                </label>
+                <label for="sentiment">
+                    <input type="radio" name="sentiment" value="All Sentiment"/>
+                    All Sentiment
+                </label>
+            <!-- category filter --> 
+            <h2>Category:</h2>
+            <label for="category">
+                <input type="radio" name="category" value="World"/>
+                World
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Finance"/>
+                Finance
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Sports"/>
+                Sports
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="Technology"/>
+                Technology
+            </label>
+            <label for="sentiment">
+                <input type="radio" name="category" value="All News"/>
+                All News
+            </label>
+            <!-- country filter -->
+            <h2>Country:</h2>
+            <label for="country">
+                <input type="radio" name="country" value="USA"/>
+                USA
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="UK"/>
+                UK
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="China"/>
+                China
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="New Zealand"/>
+                New Zealand
+            </label>
+            <label for="country">
+                <input type="radio" name="country" value="All Countries"/>
+                All Countries
+            </label>
+            <button type="submit" class="button">Filter Results</button>
+        </form>   
+        </div>
+
+
+    <div class="articles">
+        {% if news %}
+            {% for article in news %}
+                {% if article.sentiment == "Very Positive" %}
+                    <div class="article very-positive" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% elif article.sentiment == "Positive" %}
+                <div class="article positive" >
+                    <div class="headline">{{article.headline}}</div>
+                    <div class="details">
+                        <p>{{article.date}}</p>
+                        <p>{{article.author}}</p>
+                        <p>{{article.source}}</p>
+                    </div>
+                    <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <div class="imagediv">
+                        <img src="static/image.jpg" alt="" class="image">
+                    </div>
+                </div>
+                {% elif article.sentiment == "Neutral" %}
+                    <div class="article neutral" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% elif article.sentiment == "Negative" %}
+                    <div class="article negative" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% elif article.sentiment == "Very Negative" %}
+                    <div class="article very-negative" >
+                        <div class="headline">{{article.headline}}</div>
+                        <div class="details">
+                            <p>{{article.date}}</p>
+                            <p>{{article.author}}</p>
+                            <p>{{article.source}}</p>
+                        </div>
+                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                            <div class="imagediv">
+                            <img src="static/image.jpg" alt="" class="image">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}    
+    </div>
+    <script src="static/app.js"></script>
+</body>
+</html>
