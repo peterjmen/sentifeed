@@ -115,11 +115,11 @@
                         <div class="details">
                             <p>{{article.date}}</p>
                             <p>{{article.author}}</p>
-                            <p>{{article.source}}</p>
+                            <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
                             <div class="imagediv">
-                            <img src="static/image.jpg" alt="" class="image">
+                            <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
                 {% elif article.sentiment == "Positive" %}
@@ -128,11 +128,11 @@
                     <div class="details">
                         <p>{{article.date}}</p>
                         <p>{{article.author}}</p>
-                        <p>{{article.source}}</p>
+                        <p>{{article.source.name}}</p>
                     </div>
-                    <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
-                        <div class="imagediv">
-                        <img src="static/image.jpg" alt="" class="image">
+                    <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
+                    <div class="imagediv">
+                        <img src="{{article.urlToImage}}" alt="" class="image">
                     </div>
                 </div>
                 {% elif article.sentiment == "Neutral" %}
@@ -141,11 +141,11 @@
                         <div class="details">
                             <p>{{article.date}}</p>
                             <p>{{article.author}}</p>
-                            <p>{{article.source}}</p>
+                            <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
                             <div class="imagediv">
-                            <img src="static/image.jpg" alt="" class="image">
+                            <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
                 {% elif article.sentiment == "Negative" %}
@@ -154,11 +154,11 @@
                         <div class="details">
                             <p>{{article.date}}</p>
                             <p>{{article.author}}</p>
-                            <p>{{article.source}}</p>
+                            <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
                             <div class="imagediv">
-                            <img src="static/image.jpg" alt="" class="image">
+                            <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
                 {% elif article.sentiment == "Very Negative" %}
@@ -167,11 +167,11 @@
                         <div class="details">
                             <p>{{article.date}}</p>
                             <p>{{article.author}}</p>
-                            <p>{{article.source}}</p>
+                            <p>{{article.source.name}}</p>
                         </div>
-                        <p style="grid-area: readmore; font-size: 10pt;">Read more</p>
+                        <p style="grid-area: readmore; font-size: 10pt;"><a href="{{article.url}}">Read more</a></p>
                             <div class="imagediv">
-                            <img src="static/image.jpg" alt="" class="image">
+                            <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
                 {% endif %}
