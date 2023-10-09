@@ -22,9 +22,16 @@ COUNTRY_MAP = {
     "All Countries": None
 }
 
+# judge sentiment by content
+# def calculate_sentiment(text):
+#     probs = model.predict_proba([text])
+#     sentiment_value = 0 * probs[0][0] + 4 * probs[0][1]
+#     return sentiment_value
 
-def calculate_sentiment(text):
-    probs = model.predict_proba([text])
+# judge sentiment based on title
+def calculate_sentiment(title):
+    # Calculate sentiment based on the article title
+    probs = model.predict_proba([title])
     sentiment_value = 0 * probs[0][0] + 4 * probs[0][1]
     return sentiment_value
 
@@ -54,18 +61,29 @@ def fetch_articles(country=None, category=None, sentiment=None):
 
     articles = response.get("articles", [])
 
-    # Format the published date and analyze sentiment
+    # judge articles by content
+    # for article in articles:
+    #     article["content"] = article["content"] or "No content available"
+    #     article["publishedAt"] = datetime.strptime(
+    #         article["publishedAt"], "%Y-%m-%dT%H:%M:%SZ"
+    #     ).strftime("%b %d, %Y %H:%M:%S")
+
+    #     sentiment_weighting = calculate_sentiment(article["content"])
+    #     sentiment_category = sentiment_to_category(sentiment_weighting)
+
+    #     article["sentiment_weighting"] = sentiment_weighting
+    #     article["sentiment_category"] = sentiment_category
+
+    # Format the published date and analyze sentiment for each article based on headline
     for article in articles:
-        article["content"] = article["content"] or "No content available"
-        article["publishedAt"] = datetime.strptime(
+        article["headline"] = article["title"]
+        article["date"] = datetime.strptime(
             article["publishedAt"], "%Y-%m-%dT%H:%M:%SZ"
         ).strftime("%b %d, %Y %H:%M:%S")
-
-        sentiment_weighting = calculate_sentiment(article["content"])
-        sentiment_category = sentiment_to_category(sentiment_weighting)
-
-        article["sentiment_weighting"] = sentiment_weighting
-        article["sentiment_category"] = sentiment_category
+        
+        # Calculate sentiment based on the article title
+        sentiment_value = calculate_sentiment(article["headline"])
+        article["sentiment"] = sentiment_to_category(sentiment_value)
 
     # Sort articles by publishedAt in descending order
     sorted_articles = sorted(
@@ -120,7 +138,7 @@ def index():
         article["date"] = datetime.strptime(
             article["publishedAt"], "%Y-%m-%dT%H:%M:%SZ"
         ).strftime("%b %d, %Y %H:%M:%S")
-        sentiment_value = calculate_sentiment(article["description"] or article["title"])
+        sentiment_value = calculate_sentiment(article["title"])
         article["sentiment"] = sentiment_to_category(sentiment_value)
 
     # If sentiment is selected, filter articles
