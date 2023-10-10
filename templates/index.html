@@ -118,15 +118,19 @@
             <h2 id="modalHeadline"></h2>
             <p class="content" id = modalContent></p>
             <a href="#" id="link"><strong>Read More</strong></a>
-            <p>Sentiment Evaluation</p>
-            <select>
-                <option>Very Positive</option>
-                <option>Positive</option>
-                <option>Neutral</option>
-                <option>Negative</option>
-                <option>Very Negative</option>
-            </select>
-            <button class="button">Submit Evaluation</button>
+            <form action="/submit-rating" method="post">
+                <p>Sentiment Evaluation</p>
+                <select name="sentiment">
+                    <option value="Very Positive">Very Positive</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Negative">Negative</option>
+                    <option value="Very Negative">Very Negative</option>
+                </select>
+                <input type="hidden" name="article_title" id="article-title-hidden">
+                <button type="submit" class="button">Submit Evaluation</button>
+            </form>
+            
             </div>
         
         </div>

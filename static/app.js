@@ -1,57 +1,53 @@
-var isOpen = false;
+let isOpen = false;
+
 function openNav() {
-    if(isOpen === false){
-        document.getElementById("filter").style.width = "250px";
-        document.getElementById("articles").style.marginLeft = "250px";
-        document.getElementById("mobile-header").style.marginLeft = "250px";
-        isOpen = true
-    }else {
-        document.getElementById("filter").style.width = "0";
-        document.getElementById("articles").style.marginLeft = "0";
-        document.getElementById("mobile-header").style.marginLeft = "0";
-        isOpen = false
-    }    
+    const filter = document.getElementById("filter");
+    const articles = document.getElementById("articles");
+    const mobileHeader = document.getElementById("mobile-header");
+    
+    if (isOpen) {
+        filter.style.width = "0";
+        articles.style.marginLeft = "0";
+        mobileHeader.style.marginLeft = "0";
+    } else {
+        filter.style.width = "250px";
+        articles.style.marginLeft = "250px";
+        mobileHeader.style.marginLeft = "250px";
+    }
+
+    isOpen = !isOpen;
 }
 
-
-var modal = document.getElementById("myModal");
-
-
-var btn = document.getElementsByClassName("read-more-button");
-
-
-var span = document.getElementsByClassName("close")[0];
-
-var headline;
-var content;
-var url;
-
-
-function setContent(head, con, link) {
-    headline = head;
-    content = con;
-    url = link;
-    console.log(head)
+function setContent(headline, content, url) {
+    const modalHeadline = document.getElementById('modalHeadline');
+    const modalContent = document.getElementById('modalContent');
+    const link = document.getElementById('link');
+    const articleTitleHidden = document.getElementById('article-title-hidden');
+    
+    modalHeadline.textContent = headline;
+    modalContent.textContent = content;
+    link.href = url;
+    articleTitleHidden.value = headline;
+    
+    showModal();
 }
-
 
 function showModal() {
-    document.getElementById("modalHeadline").innerHTML = headline
-    document.getElementById("modalContent").innerHTML = content
-    document.getElementById("link").href = url
-    modal.style.display = "block";
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById('myModal');
+    const closeSpan = document.querySelector('.close');
     
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-  
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-
-
+    closeSpan.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
