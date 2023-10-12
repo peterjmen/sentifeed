@@ -343,12 +343,12 @@ a:link, a:visited {
         position: absolute;
         left: 0;
         top: 0;  
+        z-index: 1;
     }
     .articles {
         
         display: flex;
         flex-direction: column;
-        border: 1px solid black;
         
         gap: 10px;
     }

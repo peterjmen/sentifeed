@@ -1,13 +1,17 @@
 var isOpen = false;
+articles =  document.getElementById("articles");
 function openNav() {
+    
     if(isOpen === false){
-        document.getElementById("filter").style.width = "250px";
-        document.getElementById("articles").style.marginLeft = "250px";
-        document.getElementById("mobile-header").style.marginLeft = "250px";
+        document.getElementById("filter").style.width = "80%";
+        // articles.style.marginLeft = "80%";
+        articles.style.filter = "blur(2px)";
+        document.getElementById("mobile-header").style.marginLeft = "80%";
         isOpen = true
     }else {
         document.getElementById("filter").style.width = "0";
-        document.getElementById("articles").style.marginLeft = "0";
+        articles.style.marginLeft = "0";
+        articles.style.filter = "blur(0px)";
         document.getElementById("mobile-header").style.marginLeft = "0";
         isOpen = false
     }    
