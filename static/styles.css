@@ -19,6 +19,8 @@ body {
     display: flex;
     align-items:  center;
     flex-direction: column;
+    background-color: white;
+    position: relative;
     
 }
 
@@ -28,6 +30,14 @@ body {
     height: 50px;
     align-self: center;
     justify-self: center;
+}
+.dude {
+    width: 147px;
+    height: 168px;
+    position: absolute;
+    right: -20%;
+    top: 10%;
+    z-index: -1;
 }
 
 form {
@@ -180,33 +190,7 @@ a:link, a:visited {
     font-weight: bold;
 }
  
-@media only screen and (max-width: 600px) {
-    .container { 
-        display: block;
-        width: 100%;
-    }
-    .mobile-header {
-        display: inline-flex;
-        
-    }
-    .filter {
-       
-        width: 0;
-        overflow-x: hidden;
-        position: absolute;
-        left: 0;
-        top: 0;  
-    }
-    .articles {
-        width: 100%;
-    }
-    .filter img {
-        display: none;
-    }
-    .logo {
-        padding-top: 0;
-    }
-}
+
 #articles {
     transition: margin-left .5s; 
     padding: 20px;
@@ -296,12 +280,33 @@ a:link, a:visited {
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
     word-wrap: normal;
-   line-height:18pt
-    
-   
-   
+    line-height:18pt;
   }
-  
+  .evaluation {
+    line-height: normal;
+    
+    
+  }
+  .evalButton {
+    width: 200px;
+    height: 30px;
+    background-color: #217E00;
+    color: white;
+    border-radius: 15px;
+    font-size: 12pt;
+    border: none;
+    
+}
+.evalButton:hover {
+    background-color: rgb(15, 72, 15);
+    cursor: pointer;
+}
+.evaluationSelect {
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+}
   /* The Close Button */
   .close {
     color: #aaa;
@@ -321,3 +326,45 @@ a:link, a:visited {
    word-wrap: normal;
    line-height:18pt
   }
+
+  @media only screen and (max-width: 600px) {
+    .container { 
+        display: block;
+        width: 100%;
+    }
+    .mobile-header {
+        display: inline-flex;
+        
+    }
+    .filter {
+       
+        width: 0;
+        overflow-x: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;  
+    }
+    .articles {
+        
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        
+        gap: 10px;
+    }
+    .article {
+        
+        width: 90% ;
+        
+        
+    }
+    .image {
+        display: none;
+    }
+    .filter img {
+        display: none;
+    }
+    .logo {
+        padding-top: 0;
+    }
+}

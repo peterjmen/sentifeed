@@ -32,6 +32,7 @@
         <!--FILTER SECTION-->
         <div class="filter" id="filter">
             <img src="static/logo.jpg" alt="" class="logo" >
+            <img src="static/dude.png" class="dude">
             <!-- sentiment filter -->
             <form method="post">
                 <h2>Sentiment:</h2>
@@ -116,17 +117,27 @@
             <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="modalHeadline"></h2>
-            <p class="content" id = modalContent></p>
-            <a href="#" id="link"><strong>Read More</strong></a>
-            <p>Sentiment Evaluation</p>
-            <select>
-                <option>Very Positive</option>
-                <option>Positive</option>
-                <option>Neutral</option>
-                <option>Negative</option>
-                <option>Very Negative</option>
-            </select>
-            <button class="button">Submit Evaluation</button>
+           
+                <span class="content" id = modalContent></span>
+                <a href="#" id="link" target="_blank"><strong>...Read More</strong></a>
+            
+            
+            <div class="evaluation">
+                <p><strong>Sentiment Evaluation</strong></p>
+                <form method="POST">
+                    <select class="evaluationSelect">
+                        <option disabled selected>Select Sentiment</option>
+                        <option>Very Positive</option>
+                        <option>Positive</option>
+                        <option>Neutral</option>
+                        <option>Negative</option>
+                        <option>Very Negative</option>
+                    </select>
+                    <button class="evalButton" type="submit">Submit Evaluation</button>
+                </form>
+                
+            </div>
+            
             </div>
         
         </div>
