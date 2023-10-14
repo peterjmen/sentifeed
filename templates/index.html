@@ -10,7 +10,6 @@
 <body>
 
     <div class="container">
-        
         <!--MOBILE MENU-->
         <div class="mobile-header" id="mobile-header">  
             <!--animated menu button-->          
@@ -107,21 +106,15 @@
             <button type="submit" class="button">Filter Results</button>
         </form>   
         </div>
-
-
+        <!--ARTICLE SECTION-->
     <div class="articles" id="articles">
-
         <!-- modal -->
         <div id="myModal" class="modal">
-
             <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="modalHeadline"></h2>
-           
                 <span class="content" id = modalContent></span>
                 <a href="#" id="link" target="_blank"><strong>...Read More</strong></a>
-            
-            
             <div class="evaluation">
                 <p><strong>Sentiment Evaluation</strong></p>
                 <form method="POST">
@@ -135,17 +128,14 @@
                     </select>
                     <button class="evalButton" type="submit">Submit Evaluation</button>
                 </form>
-                
             </div>
-            
             </div>
-        
         </div>
-        
+        <!--rated articles-->
         {% if news %}
             {% for article in news %}
+            <!--very positive-->
                 {% if article.sentiment == "Very Positive" %}
-             
                     <div class="article very-positive" >
                         <div class="headline">{{article.headline}}</div>
                         <div class="details">
@@ -163,7 +153,7 @@
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
-              
+                    <!--positive-->
                 {% elif article.sentiment == "Positive" %}
                 <div class="article positive" >
                     <div class="headline">{{article.headline}}</div>
@@ -182,6 +172,7 @@
                         <img src="{{article.urlToImage}}" alt="" class="image">
                     </div>
                 </div>
+                <!--neutral-->
                 {% elif article.sentiment == "Neutral" %}
                     <div class="article neutral" >
                         <div class="headline">{{article.headline}}</div>
@@ -200,6 +191,7 @@
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
+                    <!--negative-->
                 {% elif article.sentiment == "Negative" %}
                     <div class="article negative" >
                         <div class="headline">{{article.headline}}</div>
@@ -218,6 +210,7 @@
                             <img src="{{article.urlToImage}}" alt="" class="image">
                         </div>
                     </div>
+                    <!--very negative-->
                 {% elif article.sentiment == "Very Negative" %}
                     <div class="article very-negative" >
                         <div class="headline">{{article.headline}}</div>

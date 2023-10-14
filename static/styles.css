@@ -2,7 +2,6 @@ body {
     width: 100%;
     margin: 0;
     font-family: 'Inter', sans-serif;
-    height: 100%;
     overflow: hidden;
 }
 .container {
@@ -20,10 +19,8 @@ body {
     align-items:  center;
     flex-direction: column;
     background-color: white;
-    position: relative;
-    
+    position: relative;   
 }
-
 .logo {
     padding-top: 20px;
     width: 250px;
@@ -39,7 +36,6 @@ body {
     top: 10%;
     z-index: -1;
 }
-
 form {
     display: flex;
     flex-direction: column;
@@ -61,7 +57,6 @@ input[type='radio'] {
     background-color: rgb(15, 72, 15);
     cursor: pointer;
 }
-
 .ad-more-container {
     width: 100%;
     display: flex;
@@ -69,66 +64,40 @@ input[type='radio'] {
 }
 .read-more {
     font-size: 12pt;
-    
 }
 a:visited, a:link {
     color: black;
     text-decoration: none;
 }
-
-/* MOBILE STYLING */
-
-.mobile-header {
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-.openbtn {
-    font-size: 40px;
-    cursor: pointer;
-    background-color: white;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-
-  }
-
-
-  /* NEW */
-
-  .articles {
+/* ARTICLES */
+.articles {
     grid-area: 'articles';
-    /* width: 90%; */
+    width: 90%;
     
+    height: 100%;
+    padding-top: 205px;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40%, 40%));
     grid-auto-rows: 15%;
     grid-gap: 5%;
     overflow-y: scroll;
-    justify-content: center;
+    -webkit-overflow-scrolling: touch;
     align-items: center;
     margin-top: 5%;
-
-
 }
-
-  .article {
+.article {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 2fr 2fr 1fr;
     grid-template-areas: 
     "headline headline headline headline"
     "details details image image"
-    "readmore readmore image image"
-    ;
+    "readmore readmore image image";
     padding: 5px;
     width: 100%;
     height: 100%;
-    
-    line-height: 1px;
-    
-    
+    line-height: 1px; 
 }
 .very-positive {
     border-left: 4px solid #76D502;
@@ -150,17 +119,14 @@ a:visited, a:link {
     border-left: 4px solid #DE322B;
     border-bottom: 4px solid #DE322B;
 }
-
-
-
-
 .details {
     grid-area: details;
 }
 .details p {
     font-size: 8pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
 .headline  {
     font-size: 12pt;
     font-weight: bold;
@@ -170,10 +136,9 @@ a:visited, a:link {
     white-space: nowrap;
     overflow: hidden;
 }
-
 .image {
-   
     height: 100%;
+    width: 100%;
     align-self: flex-end;
 }
 .imagediv {
@@ -183,14 +148,99 @@ a:visited, a:link {
     width: 100%;
     height: 100%;
 }
-
 a:link, a:visited {
     color: black;
     text-decoration: none;
     font-weight: bold;
 }
- 
 
+.read-more-button {
+    background-color: white;
+    height: auto;
+    width: auto;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-weight: bold;
+    cursor: pointer;
+}
+  /* MODAL */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; 
+    word-wrap: normal;
+    line-height:18pt;
+}
+.evaluation {
+    line-height: normal; 
+}
+.evalButton {
+    width: 200px;
+    height: 30px;
+    background-color: #217E00;
+    color: white;
+    border-radius: 15px;
+    font-size: 12pt;
+    border: none;
+}
+.evalButton:hover {
+    background-color: rgb(15, 72, 15);
+    cursor: pointer;
+}
+.evaluationSelect {
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.content {
+   word-wrap: normal;
+   line-height:18pt
+}
+
+
+
+/* MOBILE */
+.mobile-header {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.openbtn {
+    font-size: 40px;
+    cursor: pointer;
+    background-color: white;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
 #articles {
     transition: margin-left .5s; 
     padding: 20px;
@@ -201,7 +251,7 @@ a:link, a:visited {
 #filter {
     transition: width .5s
 }
-/* animation */
+
 .hamburger-div {
     display: flex;
     align-items: center;
@@ -219,125 +269,40 @@ a:link, a:visited {
     width: 80px;
     margin: auto
   }
-  .hamRotate.active {
+.hamRotate.active {
     transform: rotate(45deg);
-  }
-  .hamRotate180.active {
+}
+.hamRotate180.active {
     transform: rotate(180deg);
-  }
-  .line {
+}
+.line {
     fill:none;
     transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
     stroke:#000;
     stroke-width:5.5;
     stroke-linecap:round;
-  }
-  .ham1 .top {
+}
+.ham1 .top {
     stroke-dasharray: 40 139;
-  }
-  .ham1 .bottom {
+}
+.ham1 .bottom {
     stroke-dasharray: 40 180;
-  }
-  .ham1.active .top {
+}
+.ham1.active .top {
     stroke-dashoffset: -98px;
-  }
-  .ham1.active .bottom {
+}
+.ham1.active .bottom {
     stroke-dashoffset: -138px;
-  }
-
-/* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@300&display=swap');
-.read-more-button {
-    background-color: white;
-    height: auto;
-    width: auto;
-    border: none;
-    padding: 0;
-    text-align: left;
-    font-weight: bold;
-    cursor: pointer;
-
 }
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-    word-wrap: normal;
-    line-height:18pt;
-  }
-  .evaluation {
-    line-height: normal;
-    
-    
-  }
-  .evalButton {
-    width: 200px;
-    height: 30px;
-    background-color: #217E00;
-    color: white;
-    border-radius: 15px;
-    font-size: 12pt;
-    border: none;
-    
-}
-.evalButton:hover {
-    background-color: rgb(15, 72, 15);
-    cursor: pointer;
-}
-.evaluationSelect {
-    text-align: center;
-    width: 200px;
-    height: 30px;
-    border-radius: 15px;
-}
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .content {
-   word-wrap: normal;
-   line-height:18pt
-  }
-
-  @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .container { 
         display: block;
         width: 100%;
     }
     .mobile-header {
-        display: inline-flex;
-        
+        display: inline-flex;     
     }
-    .filter {
-       
+    .filter {   
         width: 0;
         overflow-x: hidden;
         position: absolute;
@@ -345,21 +310,16 @@ a:link, a:visited {
         top: 0;  
         z-index: 1;
     }
-    .articles {
-        
+    .articles {  
         display: flex;
         flex-direction: column;
+        gap: 20px;
         
-        gap: 10px;
     }
     .article {
-        
+        height: 120px;
         width: 90% ;
-        
-        
-    }
-    .image {
-        display: none;
+        grid-template-rows: 3fr 2fr 1fr; 
     }
     .filter img {
         display: none;
@@ -368,3 +328,6 @@ a:link, a:visited {
         padding-top: 0;
     }
 }
+
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@300&display=swap');
