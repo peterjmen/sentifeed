@@ -84,6 +84,7 @@ a:visited, a:link {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     align-items: center;
+    justify-content: center;
     margin-top: 5%;
 }
 .article {
@@ -138,7 +139,8 @@ a:visited, a:link {
 }
 .image {
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
+    aspect-ratio: 1.75;
     align-self: flex-end;
 }
 .imagediv {
