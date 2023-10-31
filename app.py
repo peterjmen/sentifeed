@@ -4,13 +4,14 @@ from datetime import datetime
 import joblib
 from newsapi import NewsApiClient
 import mysql.connector
+from dotenv import load_dotenv
 
 # Aiven config:
 db_config = {
     "host": "mysql-pete-dbase-peterjmen-5ed9.aivencloud.com",
     "port": 25774,
     "user": "avnadmin",
-    "password": "AVNS_txatETEOpfQk8qKb796", # Password in .ENV
+    "password": os.getenv("DB_PASSWORD"), # Password in .ENV
     "database": "defaultdb",
     "ssl_ca": "/path/to/your/aiven_ca.pem",
 }
