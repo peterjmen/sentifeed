@@ -111,24 +111,24 @@
         <!-- modal -->
         <div id="myModal" class="modal">
             <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalHeadline"></h2>
-                <span class="content" id = modalContent></span>
+                <span class="close">&times;</span>
+                <h2 id="modalHeadline"></h2>
+                <span class="content" id=modalContent></span>
                 <a href="#" id="link" target="_blank"><strong>...Read More</strong></a>
-            <div class="evaluation">
-                <p><strong>Sentiment Evaluation</strong></p>
-                <form method="POST">
-                    <select class="evaluationSelect">
-                        <option disabled selected>Select Sentiment</option>
-                        <option>Very Positive</option>
-                        <option>Positive</option>
-                        <option>Neutral</option>
-                        <option>Negative</option>
-                        <option>Very Negative</option>
-                    </select>
-                    <button class="evalButton" type="submit">Submit Evaluation</button>
-                </form>
-            </div>
+                <div class="evaluation">
+                    <form method="POST">
+                        <select class="evaluationSelect" name="sentiment">
+                            <option disabled selected>Select Sentiment</option>
+                            <option value="Very Positive">Very Positive</option>
+                            <option value="Positive">Positive</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Negative">Negative</option>
+                            <option value="Very Negative">Very Negative</option>
+                        </select>
+                        <input type="hidden" name="article_title" id="article-title-hidden">
+                        <button class="evalButton" type="submit">Submit Evaluation</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!--rated articles-->
